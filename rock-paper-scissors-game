@@ -1,0 +1,73 @@
+# Ana Acuna
+# Girls Who Code App
+
+
+import random
+
+
+# Function to be called in main
+# Checks each possibility and determines outcome
+def checkWin(user, computer):
+    if (user == computer):
+        return "Tie"
+    elif ((user == "rock") and (computer == "paper")):
+        return "Computer +1"
+    elif ((computer == "rock") and (user == "paper")):
+        return "User +1"
+    elif ((user == "rock") and (computer == "scissors")):
+        return "User +1"
+    elif ((user == "scissors") and (computer == "rock")):
+        return "Computer +1"
+    elif ((user == "paper") and (computer == "scissors")):
+        return "Computer +1"
+    elif ((user == "scissors") and (computer == "paper")):
+        return "User +1"
+
+
+def main():
+    print("Welcome to a game of ROCK, PAPER, SCISSORS!")
+    print("You'll play for best 2 out of 3 games against me!")
+
+    userScore = 0
+    computerScore = 0
+
+    while True:
+        # For loop so game runs 3 times
+        # The while loop will let the user play as many times as they want
+        for i in range(0, 3):
+            user = input("Enter your play ")
+            computer = random.choice(["rock", "paper", "scissors"])
+            print("Rock, Paper, Scissors, SHOOT!")
+            print("My draw", computer)
+            playWin = checkWin(user, computer)
+            # print(playWin)
+
+            if (playWin == "Computer +1"):
+                computerScore += 1
+                print("My score", computerScore)
+            if (playWin == "User +1"):
+                userScore += 1
+                print("Your score", userScore)
+
+            if userScore == 2:
+                break
+            if computerScore == 2:
+                break
+
+        if computerScore > userScore:
+            print("Yay me!")
+        elif userScore > computerScore:
+            print("Conglatulations! You win!")
+        else:
+            print("It's a tie!")
+
+        contYN = input("Would you like to play again? Enter 'Yes' or 'No' ")
+        if contYN == "No":
+            break
+
+        # So the scores aren't carried over
+        if contYN == "Yes":
+            userScore = 0
+            computerScore = 0
+
+main()
